@@ -14,6 +14,25 @@ public class Pair_Sum_1 {
         return finalPair;
     }
 
+    public static ArrayList<String> pair_Sum_1_Optimized(ArrayList<Integer> list, int target,ArrayList<String> finalPair) {
+        int left_ptr = 0, right_ptr = list.size() - 1;
+
+        while (left_ptr < right_ptr) {
+            int sum = list.get(left_ptr) + list.get(right_ptr);
+
+            if (sum == target) {
+                finalPair.add("(" + list.get(left_ptr) + ", " + list.get(right_ptr) + ")");
+                left_ptr++;
+                right_ptr--;
+            } else if (sum < target) {
+                left_ptr++;
+            } else {
+                right_ptr--;
+            }
+        }
+        return finalPair;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of list: ");
@@ -30,7 +49,8 @@ public class Pair_Sum_1 {
 
         ArrayList<String> finalPair = new ArrayList<>();
 
-        System.out.println("Pair_Sum: " + pair_Sum_1(list, target, finalPair));
+        // System.out.println("Pair_Sum: " + pair_Sum_1(list, target, finalPair));
+        System.out.println("Pair_Sum: " + pair_Sum_1_Optimized(list, target, finalPair));
         sc.close();
     }
 }
